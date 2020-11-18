@@ -29,16 +29,17 @@ export default function Post({ postData }) {
 
 export async function getStaticPaths() {
     const paths = getAllPostIds()
+    //回傳一個list是id的值
     return {
-        paths,
-        fallback: false
+        paths,//The array of possible values for id must be the value of the paths key of the returned object.
+        fallback: false//任何透過getStaticPaths path沒有回傳直 會變成404
     }
 }
 
 
 export async function getStaticProps({params}) {
     const postData = await getPostData(params.id)
-
+    //運用params.id抓取需要的資料for blog post
     return {
         props: {
             postData
